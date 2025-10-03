@@ -42,7 +42,7 @@ jobs:
       run: bazel test //src/...
 
     - name: Run Bazel coverage
-      run: bazel coverage //src/... --combined_lcov=bazel-out/_coverage/_coverage_report.dat
+      run: bazel coverage //src/... --combined_mode=on --coverage_report_generator=@bazel_tools//tools/test:coverage_report_generator
 
     - name: Upload coverage to Codecov
       uses: codecov/codecov-action@v5
