@@ -40,3 +40,12 @@ jobs:
 
     - name: Run all tests
       run: bazel test //src/...
+
+    - name: Run Bazel coverage
+      run: bazel coverage //src/... --combined_lcov=bazel-out/_coverage/_coverage_report.dat
+
+    - name: Upload coverage to Codecov
+      uses: codecov/codecov-action@v5
+      with:
+        token: ${{ secrets.CODECOV_TOKEN }}
+        files: bazel-out/_coverage/_coverage_report.dat
